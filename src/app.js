@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const authRoutes = require('./modules/auth/routes');
 const adminRoutes = require('./modules/admin/routes');
-const productRoutes = require('./modules/products/routes');
+const productRoutes = require('./modules/product/routes');
 const userRoutes = require('./modules/users/routes');
 const error = require('./middleware/error');
 
