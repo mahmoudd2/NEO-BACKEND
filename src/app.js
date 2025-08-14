@@ -5,7 +5,7 @@ const cors = require('cors');
 // const authRoutes = require('./modules/auth/routes');
 const adminRoutes = require('./modules/admin/routes');
 // const productRoutes = require('./modules/product/routes');
-// const userRoutes = require('./modules/users/routes');
+const userRoutes = require('./modules/users/routes');
 const error = require('./middleware/error');
 
 const app = express();
@@ -17,7 +17,7 @@ app.get('/health', (_, res) => res.json({ ok: true }));
 // app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 // app.use('/api/products', productRoutes);
-// app.use('/api/users', userRoutes);
+app.use('/api/users', userRoutes);
 
 app.use(error);
 module.exports = app;

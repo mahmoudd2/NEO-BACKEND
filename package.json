@@ -1,9 +1,20 @@
 {
   "name": "neo-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Inventory backend (Express + Knex + Postgres)",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon --watch src --ext js,json --exec \"node src/server.js\"",
+    "build": "babel src -d dist",
+
+    "migrate": "knex migrate:latest --knexfile knexfile.js",
+    "migrate:rollback": "knex migrate:rollback --knexfile knexfile.js",
+    "seed": "knex seed:run --knexfile knexfile.js",
+    "db:reset": "npm run migrate:rollback -- --all && npm run migrate && npm run seed",
+
+    "health": "node -e \"require('dotenv').config();console.log('OK:',process.env.DB_HOST,process.env.DB_NAME)\"",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "repository": {
     "type": "git",
@@ -16,7 +27,6 @@
     "url": "https://github.com/mahmoudd2/NEO-BACKEND/issues"
   },
   "homepage": "https://github.com/mahmoudd2/NEO-BACKEND#readme",
-  "description": "",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
@@ -25,7 +35,10 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
-    "pg": "^8.16.3",
-    "pg-hstore": "^2.3.4"
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.0"
   }
 }
