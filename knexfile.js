@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('dotenv').config({ path: path.resolve(process.cwd(), '.env') });
 
 module.exports = {
   development: {

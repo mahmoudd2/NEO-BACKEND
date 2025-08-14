@@ -1,4 +1,6 @@
-require('dotenv').config();
+const path = require('path');                           // ✅ add this line
+require('dotenv').config({ path: path.resolve(process.cwd(), '.env') });
+
 const app = require('./app');
 const db = require('./config/knex');
 

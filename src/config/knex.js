@@ -1,6 +1,6 @@
 const path = require('path');
 // dist/config/knex.js -> ../.env
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+require('dotenv').config({ path: path.resolve(process.cwd(), '.env') });
 
 const knex = require('knex');
 
