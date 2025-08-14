@@ -15,4 +15,6 @@ router.delete('/:id', verifyAdmin, c.deleteUser);
 
 router.post('/me/change-password', c.changeMyPassword);
 
+router.post('/login', c.login);
+
 module.exports = router;

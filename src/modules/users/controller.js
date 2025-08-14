@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const repo = require('./models');
 const mailer = require('../../utils/mailer');
+const service = require('./service');
 
 // tiny validator like in your snippet
 const validateFields = (body, required) => {
@@ -29,6 +30,21 @@ exports.createUser = async (req, res) => {
   } catch (e) {
     console.error(e);
     return res.status(500).json({ message: 'Failed to create user' });
+  }
+};
+
+
+exports.login = async (req, res) => {
+  const { email, password } = req.body || {};
+  if (!email || !password) return res.status(400).json({ message: 'Email and password are required' });
+
+  try {
+    const result = await service.login(email, password);
+    if (!result.ok) return res.status(401).json({ message: result.message });
+    return res.json(result);
+  } catch (e) {
+    console.error('[users.login] error:', e);
+    return res.status(500).json({ message: 'Server error' });
   }
 };
 

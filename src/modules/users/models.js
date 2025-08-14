@@ -61,6 +61,17 @@ module.exports = {
   getEmailById: (id) =>
   db('UserAccount').select('id','Email','FirstName').where({ id }).first(),
 
+  findUserByEmail: (email) =>
+    db('UserAccount')
+      .select([
+        'id', 'Email', 'Password', 'RoleID', 'CompanyID',
+        'UserName', 'FirstName', 'LastName', 'status'
+      ])
+      .where({ Email: email })
+      .first(),
+
+  getRoleName: (roleId) =>
+    db('Role').select('Name').where({ id: roleId }).first(),
 
   remove: (id) => db('UserAccount').where({ id }).del()
 };
