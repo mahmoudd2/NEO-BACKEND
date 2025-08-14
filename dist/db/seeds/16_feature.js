@@ -1,0 +1,16 @@
+"use strict";
+
+exports.seed = async function (knex) {
+  await knex('Feature').del();
+  await knex('Feature').insert([{
+    Name: 'Dashboard',
+    Description: 'Access to analytics dashboard'
+  }, {
+    Name: 'Reporting',
+    Description: 'Generate reports'
+  }, {
+    Name: 'Inventory',
+    Description: 'Manage stock and products'
+  }]);
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJleHBvcnRzIiwic2VlZCIsImtuZXgiLCJkZWwiLCJpbnNlcnQiLCJOYW1lIiwiRGVzY3JpcHRpb24iXSwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvZGIvc2VlZHMvMTZfZmVhdHVyZS5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnRzLnNlZWQgPSBhc3luYyBmdW5jdGlvbiAoa25leCkge1xyXG4gIGF3YWl0IGtuZXgoJ0ZlYXR1cmUnKS5kZWwoKTtcclxuICBhd2FpdCBrbmV4KCdGZWF0dXJlJykuaW5zZXJ0KFtcclxuICAgIHsgTmFtZTogJ0Rhc2hib2FyZCcsIERlc2NyaXB0aW9uOiAnQWNjZXNzIHRvIGFuYWx5dGljcyBkYXNoYm9hcmQnIH0sXHJcbiAgICB7IE5hbWU6ICdSZXBvcnRpbmcnLCBEZXNjcmlwdGlvbjogJ0dlbmVyYXRlIHJlcG9ydHMnIH0sXHJcbiAgICB7IE5hbWU6ICdJbnZlbnRvcnknLCBEZXNjcmlwdGlvbjogJ01hbmFnZSBzdG9jayBhbmQgcHJvZHVjdHMnIH1cclxuICBdKTtcclxufTtcclxuIl0sIm1hcHBpbmdzIjoiOztBQUFBQSxPQUFPLENBQUNDLElBQUksR0FBRyxnQkFBZ0JDLElBQUksRUFBRTtFQUNuQyxNQUFNQSxJQUFJLENBQUMsU0FBUyxDQUFDLENBQUNDLEdBQUcsQ0FBQyxDQUFDO0VBQzNCLE1BQU1ELElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQ0UsTUFBTSxDQUFDLENBQzNCO0lBQUVDLElBQUksRUFBRSxXQUFXO0lBQUVDLFdBQVcsRUFBRTtFQUFnQyxDQUFDLEVBQ25FO0lBQUVELElBQUksRUFBRSxXQUFXO0lBQUVDLFdBQVcsRUFBRTtFQUFtQixDQUFDLEVBQ3REO0lBQUVELElBQUksRUFBRSxXQUFXO0lBQUVDLFdBQVcsRUFBRTtFQUE0QixDQUFDLENBQ2hFLENBQUM7QUFDSixDQUFDIiwiaWdub3JlTGlzdCI6W119

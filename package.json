@@ -5,8 +5,11 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "cross-env NODE_ENV=development nodemon --watch src --ext js,json --exec \"node src/server.js\"",
-    "build": "babel src -d dist",
+    "dev": "cross-env NODE_ENV=development nodemon --watch src --ext js,json --exec \"node -r source-map-support/register src/server.js\"",
+
+    "clean": "rimraf dist",
+    "build": "npm run clean && babel src --out-dir dist --copy-files --source-maps inline",
+    "start:prod": "node -r source-map-support/register dist/server.js",
 
     "migrate": "knex migrate:latest --knexfile knexfile.js",
     "migrate:rollback": "knex migrate:rollback --knexfile knexfile.js",
@@ -38,7 +41,13 @@
     "pg": "^8.16.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.28.0",
+    "@babel/core": "^7.28.0",
+    "@babel/node": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
     "cross-env": "^7.0.3",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "rimraf": "^6.0.1",
+    "source-map-support": "^0.5.21"
   }
 }

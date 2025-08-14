@@ -1,0 +1,19 @@
+"use strict";
+
+exports.seed = async function (knex) {
+  await knex('Bundle').del();
+  await knex('Bundle').insert([{
+    Name: 'Basic Plan',
+    Price: 99.99,
+    Description: 'Basic subscription package'
+  }, {
+    Name: 'Pro Plan',
+    Price: 199.99,
+    Description: 'Professional subscription package'
+  }, {
+    Name: 'Enterprise Plan',
+    Price: 499.99,
+    Description: 'Full access package'
+  }]);
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJleHBvcnRzIiwic2VlZCIsImtuZXgiLCJkZWwiLCJpbnNlcnQiLCJOYW1lIiwiUHJpY2UiLCJEZXNjcmlwdGlvbiJdLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9kYi9zZWVkcy8xN19idW5kbGUuanMiXSwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0cy5zZWVkID0gYXN5bmMgZnVuY3Rpb24gKGtuZXgpIHtcclxuICBhd2FpdCBrbmV4KCdCdW5kbGUnKS5kZWwoKTtcclxuICBhd2FpdCBrbmV4KCdCdW5kbGUnKS5pbnNlcnQoW1xyXG4gICAgeyBOYW1lOiAnQmFzaWMgUGxhbicsIFByaWNlOiA5OS45OSwgRGVzY3JpcHRpb246ICdCYXNpYyBzdWJzY3JpcHRpb24gcGFja2FnZScgfSxcclxuICAgIHsgTmFtZTogJ1BybyBQbGFuJywgUHJpY2U6IDE5OS45OSwgRGVzY3JpcHRpb246ICdQcm9mZXNzaW9uYWwgc3Vic2NyaXB0aW9uIHBhY2thZ2UnIH0sXHJcbiAgICB7IE5hbWU6ICdFbnRlcnByaXNlIFBsYW4nLCBQcmljZTogNDk5Ljk5LCBEZXNjcmlwdGlvbjogJ0Z1bGwgYWNjZXNzIHBhY2thZ2UnIH1cclxuICBdKTtcclxufTtcclxuIl0sIm1hcHBpbmdzIjoiOztBQUFBQSxPQUFPLENBQUNDLElBQUksR0FBRyxnQkFBZ0JDLElBQUksRUFBRTtFQUNuQyxNQUFNQSxJQUFJLENBQUMsUUFBUSxDQUFDLENBQUNDLEdBQUcsQ0FBQyxDQUFDO0VBQzFCLE1BQU1ELElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQ0UsTUFBTSxDQUFDLENBQzFCO0lBQUVDLElBQUksRUFBRSxZQUFZO0lBQUVDLEtBQUssRUFBRSxLQUFLO0lBQUVDLFdBQVcsRUFBRTtFQUE2QixDQUFDLEVBQy9FO0lBQUVGLElBQUksRUFBRSxVQUFVO0lBQUVDLEtBQUssRUFBRSxNQUFNO0lBQUVDLFdBQVcsRUFBRTtFQUFvQyxDQUFDLEVBQ3JGO0lBQUVGLElBQUksRUFBRSxpQkFBaUI7SUFBRUMsS0FBSyxFQUFFLE1BQU07SUFBRUMsV0FBVyxFQUFFO0VBQXNCLENBQUMsQ0FDL0UsQ0FBQztBQUNKLENBQUMiLCJpZ25vcmVMaXN0IjpbXX0=
