@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const c = require('./controller');
-const { verifyAdmin } = require('../middleware/auth');
+const { verifyAdmin } = require('../../middleware/auth');
 
 
 // Save a Vendor
