@@ -31,6 +31,12 @@ module.exports = {
   getById: (id) =>
     db('UserAccount').select(userColumns).where({ id }).first(),
 
+  getByIdForAuth: (id) =>
+    db('UserAccount')
+      .select([
+        'id', 'Email', 'Password'])
+      .where({ id })
+      .first(),
 
   update: async (id, payload) => {
     const safe = {

@@ -46,7 +46,7 @@ Please log in and change it immediately.`;
 
 /** Change my password (self-service) */
 exports.changeMyPassword = async (userId, oldPassword, newPassword) => {
-  const user = await repo.getById(userId);
+  const user = await repo.getByIdForAuth(userId);
   if (!user) return { ok: false, message: 'User not found' };
 
   const ok = await bcrypt.compare(oldPassword, user.Password);
@@ -73,7 +73,14 @@ exports.login = async (email, password) => {
   } catch (_) {}
 
   const token = jwt.sign(
-    { sub: user.id, email: user.Email, role, companyId: user.CompanyID, type: 'user' },
+    {
+      id: user.id,                 
+      sub: user.id,
+      email: user.Email,
+      role,                        // e.g. employee | userAdmin | userManager
+      companyId: user.CompanyID,
+      type: 'user'
+    },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN || '1d' }
   );

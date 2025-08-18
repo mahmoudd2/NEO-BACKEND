@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const c = require('./controller');
 const { verifyAdmin } = require('../../middleware/auth');
+const { verifyUser } = require('../../middleware/auth');
 
 // Create / Read
 router.post('/', verifyAdmin, c.createUser);
@@ -13,7 +14,7 @@ router.put('/:id', verifyAdmin, c.updateUser);
 router.post('/:id/reset-password', verifyAdmin, c.resetPassword);
 router.delete('/:id', verifyAdmin, c.deleteUser);
 
-router.post('/me/change-password', c.changeMyPassword);
+router.put('/me/change-password',verifyUser, c.changeMyPassword);
 
 router.post('/login', c.login);
 

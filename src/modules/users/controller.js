@@ -117,10 +117,15 @@ exports.resetPassword = async (req, res) => {
 };
 
 exports.changeMyPassword = async (req, res) => {
-  const userId = req.user?.id; // set by your auth middleware
+  const userId = req.user?.id;  // set by auth middleware after verifying JWT
   const { oldPassword, newPassword } = req.body || {};
-  if (!userId || !oldPassword || !newPassword)
-    return res.status(400).json({ message: 'oldPassword and newPassword are required' });
+
+  if (!userId) {
+    return res.status(401).json({ message: 'Not authenticated' });
+  }
+  if (!oldPassword || !newPassword) {
+    return res.status(400).json({ message: 'Old and new passwords are required' });
+  }
 
   try {
     const result = await s.changeMyPassword(userId, oldPassword, newPassword);

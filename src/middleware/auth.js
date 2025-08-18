@@ -19,3 +19,39 @@ exports.verifyCompanyManager = (req, res, next) => {
     req.user = decoded; next();
   } catch { return res.status(403).json({ message: 'Invalid or expired token' }); }
 };
+
+
+exports.verifyUser = (req, res, next) => {
+  const auth = req.headers.authorization;
+  if (!auth?.startsWith('Bearer '))
+    return res.status(401).json({ message: 'No token' });
+  try {
+    const decoded = jwt.verify(auth.split(' ')[1], process.env.JWT_SECRET);
+    if (decoded.type !== 'user')
+      return res.status(403).json({ message: 'Users only' });
+    req.user = decoded;
+    next();
+  } catch {
+    return res.status(403).json({ message: 'Invalid or expired token' });
+  }
+};  
+
+exports.verifyRoles = (roles = []) => {
+  return (req, res, next) => {
+    const auth = req.headers.authorization;
+    if (!auth?.startsWith('Bearer '))
+      return res.status(401).json({ message: 'No token' });
+
+    try {
+      const decoded = jwt.verify(auth.split(' ')[1], process.env.JWT_SECRET);
+
+      if (!roles.includes(decoded.role))
+        return res.status(403).json({ message: 'Access denied' });
+
+      req.user = decoded;
+      next();
+    } catch {
+      return res.status(403).json({ message: 'Invalid or expired token' });
+    }
+  };
+};
