@@ -31,7 +31,7 @@ module.exports = {
   getById: (id) =>
     db('UserAccount').select(userColumns).where({ id }).first(),
 
-  /** UPDATE: allow only safe fields (no password here) */
+
   update: async (id, payload) => {
     const safe = {
       ...(payload.roleId !== undefined ? { RoleID: payload.roleId } : {}),
