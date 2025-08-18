@@ -1,17 +1,44 @@
-// Service layer for SalesTransaction
-const repo = require('./models');
+// Knex data-access for Role
+const db = require('../../config/knex');
 
-exports.addSalesTransaction = async (productId, warehouseId, quantity, pricePerUnit, totalAmount, customerName, transactionDate, createdBy) => {
-  const id = await repo.create({ productId, warehouseId, quantity, pricePerUnit, totalAmount, customerName, transactionDate, createdBy });
-  return id;
-};
+const ROLE = 'Role';
 
-exports.editSalesTransaction = async (salesTransactionId, productId, warehouseId, quantity, pricePerUnit, totalAmount, customerName, transactionDate, createdBy) => {
-  const id = await repo.update(salesTransactionId, { productId, warehouseId, quantity, pricePerUnit, totalAmount, customerName, transactionDate, createdBy });
-  return id;
-};
+module.exports = {
+  async create({ roleName, description }) {
+    const [row] = await db(ROLE)
+      .insert({ Name: roleName, Description: description })
+      .returning(['id', 'Name', 'Description']);
+    return row;
+  },
 
-exports.deleteSalesTransaction = async (salesTransactionId) => {
-  const count = await repo.remove(salesTransactionId);
-  return count;
+  list() {
+    return db(ROLE)
+      .select('id', 'Name', 'Description')
+      .orderBy('id', 'asc');
+  },
+
+  getById(id) {
+    return db(ROLE)
+      .select('id', 'Name', 'Description')
+      .where({ id })
+      .first();
+  },
+
+  async update(id, data = {}) {
+    const patch = {};
+    if (data.roleName !== undefined) patch.Name = data.roleName;
+    if (data.description !== undefined) patch.Description = data.description;
+
+    if (Object.keys(patch).length === 0) return this.getById(id);
+
+    const [row] = await db(ROLE)
+      .where({ id })
+      .update(patch)
+      .returning(['id', 'Name', 'Description']);
+    return row;
+  },
+
+  remove(id) {
+    return db(ROLE).where({ id }).del();
+  }
 };
